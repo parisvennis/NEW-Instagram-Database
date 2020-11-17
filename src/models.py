@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -22,19 +22,8 @@ class Post(Base):
     __tablename__ = 'post'
     PostID = Column(Integer, primary_key=True)
     UserID = Column(Integer, ForeignKey('user.UserID'))
-    Description = Column(String(250), nullable=False)
+    Description = Column(Text, nullable=False)
     user = relationship(User)
-
-
-
-# class Address(Base):
-#     __tablename__ = 'address'
-#     id = Column(Integer, primary_key=True)
-#     street_name = Column(String(250))
-#     street_number = Column(String(250))
-#     post_code = Column(String(250), nullable=False)
-#     person_id = Column(Integer, ForeignKey('person.id'))
-#     person = relationship(Person)
 
     def to_dict(self):
         return {}
